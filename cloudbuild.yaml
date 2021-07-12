@@ -36,7 +36,11 @@ steps:
   # Docker Build
 #   - name:gcr.io/cloud-builders/docker'
   - name: gcr.io/cloud-builders/gcloud
-    args: [ 'build', '-t', 'gcr.io/cloud-builders/gcloud']
+      - --runtime=python37
+      - --allow-unauthenticated
+      - --source=.
+      - --trigger-http
+#    args: [ 'build', '-t', 'gcr.io/cloud-builders/gcloud']
     #args: ['build', '-t',
     #       'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage:$SHORT_SHA', '.']
   # [END cloudbuild_python_image_yaml]
