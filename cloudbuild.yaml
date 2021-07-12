@@ -26,14 +26,14 @@ steps:
   # [START cloudbuild_python_push_yaml]
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push',  'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage:$SHORT_SHA']
+    args: ['push',  'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:$SHORT_SHA']
   # [END cloudbuild_python_push_yaml]
 
   # [START cloudbuild_python_deploy_yaml]
   # Deploy to Cloud Run
   - name: google/cloud-sdk
     args: ['gcloud', 'run', 'deploy', 'helloworld',
-           '--image=us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/myimage:$SHORT_SHA',
+           '--image=us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:$SHORT_SHA',
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated']
   # [END cloudbuild_python_deploy_yaml]
