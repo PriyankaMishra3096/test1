@@ -15,20 +15,20 @@
 # [START cloudbuild_python_dependencies_yaml]
 steps:
   # Install dependencies
-  - name: 'docker.io/library/python:3.7'
-    args:
-    - '-c'
-    - |
-      'pip install -r requirements.txt && venv/Scripts/ pytest test_cases.py'
+#  - name: 'docker.io/library/python:3.7'
+#    args:
+#    - '-c'
+#    - |
+#      'pip install -r requirements.txt && venv/Scripts/ pytest test_cases.py'
 #    args: ['-c','pip install -r requirements.txt && venv/Scripts/ pytest test_cases.py']
 # [END cloudbuild_python_dependencies_yaml]
 
   # [START cloudbuild_python_tests_yaml]
   # Run unit tests
-#  - name: test
-#    entrypoint: venv/Scripts/
-#    args : ["pytest","test_cases.py"]
-##    args: ["-m", "pytest", "--junitxml=${SHORT_SHA}_test_log.xml"]
+  - name: python
+    entrypoint: venv/Scripts/
+    args : ["pytest","test_cases.py"]
+#    args: ["-m", "pytest", "--junitxml=${SHORT_SHA}_test_log.xml"]
   #    entrypoint: /bin/sh
 #    args: ["pytest" , "main_test.py"]
   # [END cloudbuild_python_tests_yaml]
