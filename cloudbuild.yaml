@@ -24,7 +24,8 @@ steps:
   # Run unit tests
   - name: python
     entrypoint: python
-    args: ["-m", "pytest", "--junitxml=${SHORT_SHA}_test_log.xml"]
+    args : ["venv\Scripts\pytest","test_cases.py"]
+#    args: ["-m", "pytest", "--junitxml=${SHORT_SHA}_test_log.xml"]
   #    entrypoint: /bin/sh
 #    args: ["pytest" , "main_test.py"]
   # [END cloudbuild_python_tests_yaml]
