@@ -15,7 +15,7 @@
 # [START cloudbuild_python_dependencies_yaml]
 steps:
   # Install dependencies
-  - name: python
+  - name: gcr.io/cloud-builders/gcloud
     args: ['-c','pip install -r requirements.txt && venv/Scripts/ pytest test_cases.py']
 # [END cloudbuild_python_dependencies_yaml]
 
