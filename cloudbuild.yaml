@@ -22,7 +22,7 @@ steps:
 
   # [START cloudbuild_python_tests_yaml]
   # Run unit tests
-  - name: python
+  - name: gcr.io/cloud-builders/gcloud
     entrypoint: venv/Scripts/
     args : ["pytest","test_cases.py"]
 #    args: ["-m", "pytest", "--junitxml=${SHORT_SHA}_test_log.xml"]
