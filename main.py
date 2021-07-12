@@ -1,44 +1,29 @@
-from flask import Flask, request, jsonify
-import sys
+
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# [START cloudbuild_python_flask]
+import os
+
+from flask import Flask
 
 app = Flask(__name__)
 
 
-def add(a, b):
-    res = a + b
-    return str(res)
+@app.route("/")
+def hello_world():
+    name = os.environ.get("NAME", "World")
+    return f"Hello {name}!"
 
 
-@app.route("/", methods=['GET'])
-def demo():
-    msg = "Hello There!"
-    return msg
-
-
-@app.route("/gcp_demo", methods=['GET', 'POST'])
-def create_gcp_demo():
-    req_data = request.get_json()
-    a = 0
-    b = 1
-    if request.method == 'POST':
-        print("req_data>>>>>>>>>>>>>>>>>>>> ", req_data)
-        a = req_data.get("first_arg")
-        b = req_data.get("second_arg")
-    sum = add(a, b)
-    result = {"Sum": sum}
-    return jsonify(result)
-
-
-@app.route("/gcp_demo_2", methods=["GET"])
-def create_gcp_demo2():
-    a = 10
-    b = 20
-    sum = add(a, b)
-    result = {"Sum": sum}
-    return jsonify(result)
-
-
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8080)
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+# [END cloudbuild_python_flask]
