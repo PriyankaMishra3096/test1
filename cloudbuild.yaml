@@ -24,7 +24,7 @@ steps:
   # Run unit tests
   - name: python
     entrypoint: python
-    args : ["venv\Scripts\pytest","test_cases.py"]
+    args : ["venv/Scripts/pytest","test_cases.py"]
 #    args: ["-m", "pytest", "--junitxml=${SHORT_SHA}_test_log.xml"]
   #    entrypoint: /bin/sh
 #    args: ["pytest" , "main_test.py"]
