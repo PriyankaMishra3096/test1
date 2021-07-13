@@ -1,8 +1,9 @@
 # [START cloudbuild_python_yaml]
 # [START cloudbuild_python_dependencies_yaml]
+
 steps:
   # Install dependencies
-  - name: python
+  - name: python                 # container imag
     entrypoint: pip
     args: ["install", "-r", "requirements.txt", "--user"]
 # [END cloudbuild_python_dependencies_yaml]
