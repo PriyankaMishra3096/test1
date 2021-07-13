@@ -24,11 +24,11 @@ def test_handler_with_env_variable(client):
     assert r.data.decode() == "Hello Priyanka!"
     assert r.status_code == 200
 
-def test_handler_no_env_variable_fail(client):
-    r = client.get("/")
-
-    assert r.data.decode() == "Hello World"
-    assert r.status_code == 200
+# def test_handler_no_env_variable_fail(client):
+#     r = client.get("/")
+#
+#     assert r.data.decode() == "Hello World"
+#     assert r.status_code == 200
 
 # def test_handler_with_env_variable():
 #     os.environ["arg1"] = 10
