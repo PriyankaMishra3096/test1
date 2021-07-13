@@ -17,6 +17,8 @@ steps:
 
   # [START cloudbuild_python_image_yaml]
   # Docker Build
+  #Artifact Registry provides a single location for managing private packages and Docker container images.
+
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t',
            'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:$SHORT_SHA', '-t','us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:latest', '.' ]
@@ -26,6 +28,7 @@ steps:
 
   # [START cloudbuild_python_push_yaml]
   # Docker push to Google Artifact Registry
+
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push',  'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:latest']
 #  # [END cloudbuild_python_push_yaml]
