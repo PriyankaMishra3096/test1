@@ -1,6 +1,6 @@
 # [START cloudbuild_python_yaml]
 # [START cloudbuild_python_dependencies_yaml]
-
+# A build step specifies an action that you want Cloud Build to perform. For each build step, Cloud Build executes a docker container as an instance of docker run
 steps:
   # Install dependencies
   - name: python                 # container imag
@@ -30,14 +30,14 @@ steps:
   # Docker push to Google Artifact Registry
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push',  'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:latest']
+    args: ['push',  'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:$SHORT_SHA']
 #  # [END cloudbuild_python_push_yaml]
 #
 #  # [START cloudbuild_python_deploy_yaml]
 #  # Deploy to Cloud Run
   - name: google/cloud-sdk
     args: ['gcloud', 'run', 'deploy', 'helloworld',
-           '--image= us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:latest',
+           '--image= us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:$SHORT_SHA',
            '--region', 'us-central1', '--platform', 'managed',
            '--allow-unauthenticated']
   # [END cloudbuild_python_deploy_yaml]
@@ -52,5 +52,5 @@ artifacts:
 # [END cloudbuild_python_logs_yaml]
 # Store images in Google Artifact Registry
 images:
-  - us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:latest
+  - us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAMEmyimage:$SHORT_SHA
 # [END cloudbuild_python_yaml]
